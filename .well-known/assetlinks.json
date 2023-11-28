@@ -1,9 +1,1 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "io.github.test_github_organization_pokeum.twa",
-    "sha256_cert_fingerprints":
-    ["5F:E4:69:A9:EF:3D:91:AD:A6:85:FE:D6:95:FC:64:1A:36:C9:DA:3E:23:07:1B:F2:43:BD:53:60:30:66:52:62"]
-  }
-}]
+[{"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"io.github.test_github_organization_pokeum.twa","sha256_cert_fingerprints":["5F:E4:69:A9:EF:3D:91:AD:A6:85:FE:D6:95:FC:64:1A:36:C9:DA:3E:23:07:1B:F2:43:BD:53:60:30:66:52:62"]}}]
