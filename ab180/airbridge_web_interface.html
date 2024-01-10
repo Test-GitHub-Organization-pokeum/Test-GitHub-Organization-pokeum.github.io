@@ -63,12 +63,12 @@
 
     function getWebToken() {
         var webToken = AirbridgeNative.getWebToken();
-        showAndroidToast("getWebToken(): " + webToken);
+        alert("getWebToken(): " + webToken);
     }
 
     function getJSONSchemaVersion() {
         var jsonSchemaVersion = AirbridgeNative.getJSONSchemaVersion();
-        showAndroidToast("getJSONSchemaVersion(): " + jsonSchemaVersion);
+        alert("getJSONSchemaVersion(): " + jsonSchemaVersion);
     }
 
     function setUserID() {
@@ -125,10 +125,6 @@
 
     function trackEvent() {
         AirbridgeNative.execute("{ type: 'trackEvent', parameter: { category: 'category' } }");
-    }
-
-    function showAndroidToast(toast) {
-        Android.showToast(toast);
     }
 
     // Add click event listeners to the buttons
