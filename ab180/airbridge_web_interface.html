@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airbridge Web Interface</title>
+    <style>
+        /* CSS for all buttons */
+        button {
+            background-color: #007BFF; /* Background color */
+            color: #fff; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Cursor style on hover */
+            font-size: 16px; /* Font size */
+            margin: 10px; /* Margin around the button */
+        }
+
+        /* CSS for button hover effect */
+        button:hover {
+            background-color: #0056b3; /* Darker background color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Click the buttons to trigger functions</h1>
+
+<button id="btnGetWebToken">Get Web Token</button>
+<button id="btnGetJSONSchemaVersion">Get JSON Schema Version</button><br/>
+<button id="btnSetUserID">Set User ID</button>
+<button id="btnSetUserEmail">Set User Email</button>
+<button id="btnSetUserPhone">Set User Phone</button><br/>
+<button id="btnSetUserAttribute">Set User Attribute</button>
+<button id="btnRemoveUserAttribute">Remove User Attribute</button>
+<button id="btnClearUserAttributes">Clear User Attributes</button><br/>
+<button id="btnSetUserAlias">Set User Alias</button>
+<button id="btnRemoveUserAlias">Remove User Alias</button>
+<button id="btnClearUserAlias">Clear User Alias</button><br/>
+<button id="btnClearUser">Clear User</button><br/>
+<button id="btnSetDeviceAlias">Set Device Alias</button>
+<button id="btnRemoveDeviceAlias">Remove Device Alias</button>
+<button id="btnClearDeviceAlias">Clear Device Alias</button><br/>
+<button id="btnTrackEvent">Track Event</button>
+
+<script type="text/javascript">
+    // Get references to the buttons
+    var btnGetWebToken = document.getElementById("btnGetWebToken");
+    var btnGetJSONSchemaVersion = document.getElementById("btnGetJSONSchemaVersion");
+    var btnSetUserID = document.getElementById("btnSetUserID");
+    var btnSetUserEmail = document.getElementById("btnSetUserEmail");
+    var btnSetUserPhone = document.getElementById("btnSetUserPhone");
+    var btnSetUserAttribute = document.getElementById("btnSetUserAttribute");
+    var btnRemoveUserAttribute = document.getElementById("btnRemoveUserAttribute");
+    var btnClearUserAttributes = document.getElementById("btnClearUserAttributes");
+    var btnSetUserAlias = document.getElementById("btnSetUserAlias");
+    var btnRemoveUserAlias = document.getElementById("btnRemoveUserAlias");
+    var btnClearUserAlias = document.getElementById("btnClearUserAlias");
+    var btnClearUser = document.getElementById("btnClearUser");
+    var btnSetDeviceAlias = document.getElementById("btnSetDeviceAlias");
+    var btnRemoveDeviceAlias = document.getElementById("btnRemoveDeviceAlias");
+    var btnClearDeviceAlias = document.getElementById("btnClearDeviceAlias");
+    var btnTrackEvent = document.getElementById("btnTrackEvent");
+
+    function getWebToken() {
+        var webToken = AirbridgeNative.getWebToken();
+        showAndroidToast("getWebToken(): " + webToken);
+    }
+
+    function getJSONSchemaVersion() {
+        var jsonSchemaVersion = AirbridgeNative.getJSONSchemaVersion();
+        showAndroidToast("getJSONSchemaVersion(): " + jsonSchemaVersion);
+    }
+
+    function setUserID() {
+        AirbridgeNative.execute("{ type: 'setUserID', parameter: { id: 'testID' } }");
+    }
+
+    function setUserEmail() {
+        AirbridgeNative.execute("{ type: 'setUserEmail', parameter: { email: 'testID@ab180.co' } }");
+    }
+
+    function setUserPhone() {
+        AirbridgeNative.execute("{ type: 'setUserPhone', parameter: { phone: '821012341234' } }");
+    }
+
+    function setUserAttribute() {
+        AirbridgeNative.execute("{ type: 'setUserAttribute', parameter: { key: 'key', value: 'value' } }");
+    }
+
+    function removeUserAttribute() {
+        AirbridgeNative.execute("{ type: 'removeUserAttribute', parameter: { key: 'key' } }");
+    }
+
+    function clearUserAttributes() {
+        AirbridgeNative.execute("{ type: 'clearUserAttributes', parameter: {} }");
+    }
+
+    function setUserAlias() {
+        AirbridgeNative.execute("{ type: 'setUserAlias', parameter: { key: 'key', value: 'value' } }");
+    }
+
+    function removeUserAlias() {
+        AirbridgeNative.execute("{ type: 'removeUserAlias', parameter: { key: 'key' } }");
+    }
+
+    function clearUserAlias() {
+        AirbridgeNative.execute("{ type: 'clearUserAlias', parameter: {} }");
+    }
+
+    function clearUser() {
+        AirbridgeNative.execute("{ type: 'clearUser', parameter: {} }");
+    }
+
+    function setDeviceAlias() {
+        AirbridgeNative.execute("{ type: 'setDeviceAlias', parameter: { key: 'key', value: 'value' } }");
+    }
+
+    function removeDeviceAlias() {
+        AirbridgeNative.execute("{ type: 'removeDeviceAlias', parameter: { key: 'key' } }");
+    }
+
+    function clearDeviceAlias() {
+        AirbridgeNative.execute("{ type: 'clearDeviceAlias', parameter: {} }");
+    }
+
+    function trackEvent() {
+        AirbridgeNative.execute("{ type: 'trackEvent', parameter: { category: 'category' } }");
+    }
+
+    function showAndroidToast(toast) {
+        Android.showToast(toast);
+    }
+
+    // Add click event listeners to the buttons
+    btnGetWebToken.addEventListener("click", getWebToken);
+    btnGetJSONSchemaVersion.addEventListener("click", getJSONSchemaVersion);
+    btnSetUserID.addEventListener("click", setUserID);
+    btnSetUserEmail.addEventListener("click", setUserEmail);
+    btnSetUserPhone.addEventListener("click", setUserPhone);
+    btnSetUserAttribute.addEventListener("click", setUserAttribute);
+    btnRemoveUserAttribute.addEventListener("click", removeUserAttribute);
+    btnClearUserAttributes.addEventListener("click", clearUserAttributes);
+    btnSetUserAlias.addEventListener("click", setUserAlias);
+    btnRemoveUserAlias.addEventListener("click", removeUserAlias);
+    btnClearUserAlias.addEventListener("click", clearUserAlias);
+    btnClearUser.addEventListener("click", clearUser);
+    btnSetDeviceAlias.addEventListener("click", setDeviceAlias);
+    btnRemoveDeviceAlias.addEventListener("click", removeDeviceAlias);
+    btnClearDeviceAlias.addEventListener("click", clearDeviceAlias);
+    btnTrackEvent.addEventListener("click", trackEvent);
+</script>
+
+</body>
+</html>
