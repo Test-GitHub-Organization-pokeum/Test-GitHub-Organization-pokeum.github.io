@@ -72,59 +72,163 @@
     }
 
     function setUserID() {
-        AirbridgeNative.execute("{ type: 'setUserID', parameter: { id: 'testID' } }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'setUserID',
+                parameter:
+                {
+                    id: 'testID'
+                }
+            }
+        ));
     }
 
     function setUserEmail() {
-        AirbridgeNative.execute("{ type: 'setUserEmail', parameter: { email: 'testID@ab180.co' } }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'setUserEmail',
+                parameter:
+                {
+                    email: 'testID@ab180.co'
+                }
+            }
+        ));
     }
 
     function setUserPhone() {
-        AirbridgeNative.execute("{ type: 'setUserPhone', parameter: { phone: '821012341234' } }");
+         AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'setUserPhone',
+                parameter:
+                {
+                    phone: '821012341234'
+                }
+            }
+        ));
     }
 
     function setUserAttribute() {
-        AirbridgeNative.execute("{ type: 'setUserAttribute', parameter: { key: 'key', value: 'value' } }");
+       AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'setUserAttribute',
+                parameter:
+                {
+                    key: 'key',
+                    value: 'value'
+                }
+            }
+        ));
     }
 
     function removeUserAttribute() {
-        AirbridgeNative.execute("{ type: 'removeUserAttribute', parameter: { key: 'key' } }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'removeUserAttribute',
+                parameter:
+                {
+                    key: 'key'
+                }
+            }
+        ));
     }
 
     function clearUserAttributes() {
-        AirbridgeNative.execute("{ type: 'clearUserAttributes', parameter: {} }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'clearUserAttributes',
+                parameter: {}
+            }
+        ));
     }
 
     function setUserAlias() {
-        AirbridgeNative.execute("{ type: 'setUserAlias', parameter: { key: 'key', value: 'value' } }");
+       AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'setUserAlias',
+                parameter:
+                {
+                    key: 'key',
+                    value: 'value'
+                }
+            }
+        ));
     }
 
     function removeUserAlias() {
-        AirbridgeNative.execute("{ type: 'removeUserAlias', parameter: { key: 'key' } }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'removeUserAlias',
+                parameter:
+                {
+                    key: 'key'
+                }
+            }
+        ));
     }
 
     function clearUserAlias() {
-        AirbridgeNative.execute("{ type: 'clearUserAlias', parameter: {} }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'clearUserAlias',
+                parameter: {}
+            }
+        ));
     }
 
     function clearUser() {
-        AirbridgeNative.execute("{ type: 'clearUser', parameter: {} }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'clearUser',
+                parameter: {}
+            }
+        ));
     }
 
     function setDeviceAlias() {
-        AirbridgeNative.execute("{ type: 'setDeviceAlias', parameter: { key: 'key', value: 'value' } }");
+       AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'setDeviceAlias',
+                parameter:
+                {
+                    key: 'key',
+                    value: 'value'
+                }
+            }
+        ));
     }
 
     function removeDeviceAlias() {
-        AirbridgeNative.execute("{ type: 'removeDeviceAlias', parameter: { key: 'key' } }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'removeDeviceAlias',
+                parameter:
+                {
+                    key: 'key'
+                }
+            }
+        ));
     }
 
     function clearDeviceAlias() {
-        AirbridgeNative.execute("{ type: 'clearDeviceAlias', parameter: {} }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'clearDeviceAlias',
+                parameter: {}
+            }
+        ));
     }
 
     function trackEvent() {
-        AirbridgeNative.execute("{ type: 'trackEvent', parameter: { category: 'category' } }");
+        AirbridgeNative.execute(JSON.stringify(
+            {
+                type: 'trackEvent',
+                parameter:
+                {
+                    category: 'category',
+                    attributes: null
+                }
+            }
+        ));
     }
 
     // Add click event listeners to the buttons
