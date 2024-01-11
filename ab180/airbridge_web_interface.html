@@ -218,14 +218,21 @@
         ));
     }
 
-    function trackEvent() {
+   function trackEvent() {
         AirbridgeNative.execute(JSON.stringify(
             {
                 type: 'trackEvent',
                 parameter:
                 {
                     category: 'category',
-                    attributes: null
+                    attributes: JSON.stringify(
+                        {
+                            '@action': 'hello',
+                            '@totalValue': 100,
+                            '@query': 'keyword',
+                            'custom': 'value'
+                        }
+                    )
                 }
             }
         ));
