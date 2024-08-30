@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airbridge Web</title>
+    <style>
+        /* CSS for all buttons */
+        button {
+            background-color: #007BFF; /* Background color */
+            color: #fff; /* Text color */
+            padding: 10px 20px; /* Padding around text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Cursor style on hover */
+            font-size: 16px; /* Font size */
+            margin: 10px; /* Margin around the button */
+        }
+
+        /* CSS for button hover effect */
+        button:hover {
+            background-color: #0056b3; /* Darker background color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Click the buttons to trigger functions</h1>
+
+<button id="btnIsSDKEnabled">Is SDK Enabled</button><br/>
+<button id="btnSetUserID">Set User ID</button>
+<button id="btnSetUserEmail">Set User Email</button><br/>
+<button id="btnSetUserAttribute">Set User Attribute</button>
+<button id="btnSetUserAlias">Set User Alias</button><br/>
+<button id="btnSetDeviceAlias">Set Device Alias</button>
+<button id="btnRemoveDeviceAlias">Remove Device Alias</button>
+<button id="btnClearDeviceAlias">Clear Device Alias</button><br/>
+<button id="btnTrackEvent">Track Event</button>
+
+<script type="text/javascript">
+    // Airbridge Web SDK Installation
+    (function(a_,i_,r_,_b,_r,_i,_d,_g,_e){if(!a_[_b]){var n=function(){var c=i_.createElement(r_);c.onerror=function(){g.queue.filter(function(a){return 0<=_d.indexOf(a[0])}).forEach(function(a){a=a[1];a=a[a.length-1];"function"===typeof a&&a("error occur when load airbridge")})};c.async=1;c.src=_r;"complete"===i_.readyState?i_.head.appendChild(c):a_.addEventListener("load",function h(){a_.removeEventListener("load",h);i_.head.appendChild(c)})},g={queue:[],get isSDKEnabled(){return!1}};_i.concat(_d).forEach(function(c){var a=c.split("."),h=a.pop();a.reduce(function(p,q){return p[q]=p[q]||{}},g)[h]=function(){g.queue.push([c,arguments])}});a_[_b]=g;0<_g?(_b=new (a_.XDomainRequest||a_.XMLHttpRequest),_i=function(){},_b.open("GET",_r),_b.timeout=_g,_b.onload=function(){n()},_b.onerror=_i,_b.onprogress=_i,_b.ontimeout=_i,_b.send()):n()}})(window,document,"script","airbridge","//static.airbridge.io/sdk/latest/airbridge.min.js","init startTracking fetchResource setBanner setDownload setDownloads openDeeplink setDeeplinks sendWeb setUserAgent setUserAlias addUserAlias setMobileAppData setUserId setUserEmail setUserPhone setUserAttributes clearUser setDeviceAlias removeDeviceAlias clearDeviceAlias setDeviceIFV setDeviceIFA setDeviceGAID events.send events.signIn events.signUp events.signOut events.purchased events.addedToCart events.productDetailsViewEvent events.homeViewEvent events.productListViewEvent events.searchResultViewEvent".split(" "),["events.wait","createTouchpoint"],0);
+
+    airbridge.init({
+        app: 'ablog',
+        webToken: '8ec37a00b37a4576a7f8bdf8d5164dd5',
+    })
+
+    // Get references to the buttons
+    var btnIsSDKEnabled = document.getElementById("btnIsSDKEnabled");
+    var btnSetUserID = document.getElementById("btnSetUserID");
+    var btnSetUserEmail = document.getElementById("btnSetUserEmail");
+    var btnSetUserAttribute = document.getElementById("btnSetUserAttribute");
+    var btnSetUserAlias = document.getElementById("btnSetUserAlias");
+    var btnSetDeviceAlias = document.getElementById("btnSetDeviceAlias");
+    var btnRemoveDeviceAlias = document.getElementById("btnRemoveDeviceAlias");
+    var btnClearDeviceAlias = document.getElementById("btnClearDeviceAlias");
+    var btnTrackEvent = document.getElementById("btnTrackEvent");
+
+    function isSDKEnabled() {
+        alert("isSDKEnabled(): " + airbridge.isSDKEnabled);
+    }
+
+    function setUserID() {
+        airbridge.setUserId('testID');
+    }
+
+    function setUserEmail() {
+        airbridge.setUserEmail('testID@ab180.co');
+    }
+
+    function setUserAttribute() {
+        airbridge.setUserAttributes({
+            "age": 45,
+            "gender": "male",
+            "name": "Gildong Hong"
+        });
+    }
+
+    function setUserAlias() {
+        airbridge.setUserAlias({
+            "amplitude_id": "12345678",
+            "braze_ext_id": "87654321"  
+        });
+    }
+
+    function setDeviceAlias() {
+        airbridge.setDeviceAlias('key', 'value');
+    }
+
+    function removeDeviceAlias() {
+        airbridge.removeDeviceAlias('key');
+    }
+
+    function clearDeviceAlias() {
+        airbridge.clearDeviceAlias();
+    }
+
+   function trackEvent() {
+        airbridge.events.send("category", {
+            label: "label",
+            action: "action",
+            value: 10,
+            semanticAttributes: {
+                transactionID: "transaction_123",
+            },
+            customAttributes: {
+                key: "value",
+            }
+        });
+    }
+
+    // Add click event listeners to the buttons
+    btnIsSDKEnabled.addEventListener("click", isSDKEnabled);
+    btnSetUserID.addEventListener("click", setUserID);
+    btnSetUserEmail.addEventListener("click", setUserEmail);
+    btnSetUserAttribute.addEventListener("click", setUserAttribute);
+    btnSetUserAlias.addEventListener("click", setUserAlias);
+    btnClearUser.addEventListener("click", clearUser);
+    btnSetDeviceAlias.addEventListener("click", setDeviceAlias);
+    btnRemoveDeviceAlias.addEventListener("click", removeDeviceAlias);
+    btnClearDeviceAlias.addEventListener("click", clearDeviceAlias);
+    btnTrackEvent.addEventListener("click", trackEvent);
+</script>
+
+</body>
+</html>
