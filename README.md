@@ -1,4 +1,4 @@
-# Test GitHub Organization (pokeum) Blog
+# Test GitHub Organization - Po Keum
 
 [![Site](https://img.shields.io/badge/View_site-Test_GitHub_Organization_(pokeum)-2ea44f?style=for-the-badge)](https://test-github-organization-pokeum.github.io/)
 
