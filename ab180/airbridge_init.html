@@ -27,6 +27,9 @@
 <button id="btnInit1">Init #1</button>
 <button id="btnInit2">Init #2</button>
 
+<br/>
+<button id="btnTrackEvent">Track Event</button>
+
 <script type="text/javascript">
     // Airbridge Web SDK Installation
     (function(a_,i_,r_,_b,_r,_i,_d,_g,_e){if(!a_[_b]){var n=function(){var c=i_.createElement(r_);c.onerror=function(){g.queue.filter(function(a){return 0<=_d.indexOf(a[0])}).forEach(function(a){a=a[1];a=a[a.length-1];"function"===typeof a&&a("error occur when load airbridge")})};c.async=1;c.src=_r;"complete"===i_.readyState?i_.head.appendChild(c):a_.addEventListener("load",function h(){a_.removeEventListener("load",h);i_.head.appendChild(c)})},g={queue:[],get isSDKEnabled(){return!1}};_i.concat(_d).forEach(function(c){var a=c.split("."),h=a.pop();a.reduce(function(p,q){return p[q]=p[q]||{}},g)[h]=function(){g.queue.push([c,arguments])}});a_[_b]=g;0<_g?(_b=new (a_.XDomainRequest||a_.XMLHttpRequest),_i=function(){},_b.open("GET",_r),_b.timeout=_g,_b.onload=function(){n()},_b.onerror=_i,_b.onprogress=_i,_b.ontimeout=_i,_b.send()):n()}})(window,document,"script","airbridge","//static.airbridge.io/sdk/latest/airbridge.min.js","init startTracking stopTracking fetchResource openBanner setBanner setDownload setDownloads openDeeplink setDeeplinks sendWeb setUserAgent setMobileAppData setUserID clearUserID setUserEmail clearUserEmail setUserPhone clearUserPhone setUserAttribute removeUserAttribute clearUserAttributes setUserAlias removeUserAlias clearUserAlias clearUser setUserId setUserAttributes addUserAlias setDeviceAlias removeDeviceAlias clearDeviceAlias setDeviceIFV setDeviceIFA setDeviceGAID events.send events.signIn events.signUp events.signOut events.purchased events.addedToCart events.productDetailsViewEvent events.homeViewEvent events.productListViewEvent events.searchResultViewEvent".split(" "),["events.wait","createTouchpoint"],0);
@@ -34,6 +37,7 @@
     // Get references to the buttons
     var btnInit1 = document.getElementById("btnInit1");
     var btnInit2 = document.getElementById("btnInit2");
+    var btnTrackEvent = document.getElementById("btnTrackEvent");
 
     function init1() {
         airbridge.init({
@@ -64,9 +68,25 @@
         alert("init2() called!");
     }
 
+    function trackEvent() {
+        airbridge.events.send("category", {
+            label: "label",
+            action: "action",
+            value: 10,
+            semanticAttributes: {
+                transactionID: "transaction_123",
+            },
+            customAttributes: {
+                key: "value",
+            }
+        });
+        alert("trackEvent() called!");
+    }
+
     // Add click event listeners to the buttons
     btnInit1.addEventListener("click", init1);
     btnInit2.addEventListener("click", init2);
+    btnTrackEvent.addEventListener("click", trackEvent);
 </script>
 
 </body>
