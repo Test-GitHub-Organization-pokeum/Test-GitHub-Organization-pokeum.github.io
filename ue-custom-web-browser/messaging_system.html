@@ -41,17 +41,25 @@
 
     <br/><a href="uewebbrowser://event?payload=%7B%22title%22:%22hello%22%7D">Hello</a><br/>
 
+    <br/><button id="btnSendMessage">Send Message</button><br/>
+
 <script type="text/javascript">
 
     // Get references to the buttons
     var btnNavigation = document.getElementById("btnNavigation");
+    var btnSendMessage = document.getElementById("btnSendMessage");
 
     function navigation() {
         window.location.href = "uewebbrowser://action?key=value&anotherKey=anotherValue";
     }
 
+    function sendMessage() {
+        window.ue.uewebbrowser.sendmessage("action?key=value&anotherKey=anotherValue")
+    }
+
     // Add click event listeners to the buttons
     btnNavigation.addEventListener("click", navigation);
+    btnSendMessage.addEventListener("click", sendMessage);
 </script>
 
 </body>
