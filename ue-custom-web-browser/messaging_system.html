@@ -1,66 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Messaging System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalabe=no" />
     <style>
         /* CSS for all buttons */
         a {
-            background-color: #FF6961; /* Background color */
-            color: #fff; /* Text color */
-            padding: 10px 20px; /* Padding around text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Cursor style on hover */
-            font-size: 16px; /* Font size */
-            margin: 10px; /* Margin around the button */
+            /* Background color */
+            background-color: #FF6961;
+            /* Text color */
+            color: #fff;
+            /* Padding around text */
+            padding: 10px 20px;
+            /* No border */
+            border: none;
+            /* Rounded corners */
+            border-radius: 5px;
+            /* Cursor style on hover */
+            cursor: pointer;
+            /* Font size */
+            font-size: 16px;
+            /* Margin around the button */
+            margin: 10px;
         }
 
         button {
-            background-color: #007BFF; /* Background color */
-            color: #fff; /* Text color */
-            padding: 10px 20px; /* Padding around text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Cursor style on hover */
-            font-size: 16px; /* Font size */
-            margin: 10px; /* Margin around the button */
+            /* Background color */
+            background-color: #007BFF;
+            /* Text color */
+            color: #fff;
+            /* Padding around text */
+            padding: 10px 20px;
+            /* No border */
+            border: none;
+            /* Rounded corners */
+            border-radius: 5px;
+            /* Cursor style on hover */
+            cursor: pointer;
+            /* Font size */
+            font-size: 16px;
+            /* Margin around the button */
+            margin: 10px;
         }
 
         /* CSS for button hover effect */
         button:hover {
-            background-color: #0056b3; /* Darker background color on hover */
+            /* Darker background color on hover */
+            background-color: #0056b3;
         }
     </style>
 </head>
+
 <body>
 
-    <br/><a href="uewebbrowser://action?key=value&anotherKey=anotherValue">Tap Me</a><br/>
+    <br /><a href="uewebbrowser://action?key=value&anotherKey=anotherValue">Tap Me</a><br />
 
-    <br/><button id="btnNavigation">NAVIGATION</button><br/>
+    <br /><button id="btnNavigation">NAVIGATION</button><br />
 
-    <br/><a href="uewebbrowser://event?payload=%7B%22title%22:%22hello%22%7D">Hello</a><br/>
+    <br /><a href="uewebbrowser://event?payload=%7B%22title%22:%22hello%22%7D">Hello</a><br />
 
-    <br/><button id="btnSendMessage">Send Message</button><br/>
+    <br /><button id="btnSendMessage">Send Message</button><br />
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    // Get references to the buttons
-    var btnNavigation = document.getElementById("btnNavigation");
-    var btnSendMessage = document.getElementById("btnSendMessage");
+        // Get references to the buttons
+        var btnNavigation = document.getElementById("btnNavigation");
+        var btnSendMessage = document.getElementById("btnSendMessage");
 
-    function navigation() {
-        window.location.href = "uewebbrowser://action?key=value&anotherKey=anotherValue";
-    }
+        function navigation() {
+            window.location.href = "uewebbrowser://action?key=value&anotherKey=anotherValue";
+        }
 
-    function sendMessage() {
-        window.ue.uewebbrowser.sendmessage("action?key=value&anotherKey=anotherValue")
-    }
+        function sendMessage() {
+            window.ue.uewebbrowser.sendmessage("action?key=value&anotherKey=anotherValue")
+        }
 
-    // Add click event listeners to the buttons
-    btnNavigation.addEventListener("click", navigation);
-    btnSendMessage.addEventListener("click", sendMessage);
-</script>
+        // Add click event listeners to the buttons
+        btnNavigation.addEventListener("click", navigation);
+        btnSendMessage.addEventListener("click", sendMessage);
+    </script>
 
 </body>
+
 </html>
