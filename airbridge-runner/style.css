@@ -1,0 +1,198 @@
+/* ---------- Design Tokens ---------- */
+:root {
+    --bg: #f6f7fb;
+    --card-bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --border: #e5e7eb;
+    --ring: 0 0 0 3px rgba(37, 99, 235, .25);
+    --radius: 14px;
+    --shadow: 0 10px 25px rgba(2, 6, 23, .06), 0 1px 3px rgba(2, 6, 23, .06);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b0f18;
+        --card-bg: #0f172a;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --border: #1f2937;
+        --ring: 0 0 0 3px rgba(59, 130, 246, .35);
+        --shadow: 0 10px 25px rgba(0, 0, 0, .35), 0 1px 3px rgba(0, 0, 0, .3);
+    }
+}
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* ---------- Layout Card ---------- */
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+h1 {
+    margin: 0 0 16px;
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+}
+
+.description {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ---------- Form ---------- */
+.input-group {
+    margin: 0 0 16px;
+}
+
+label {
+    display: block;
+    margin: 0 0 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--muted);
+    opacity: .8;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: var(--ring);
+    background: color-mix(in oklab, var(--card-bg), #000 1%);
+}
+
+/* Compact inputs side-by-side on wide screens */
+@media (min-width: 720px) {
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+
+/* ---------- Buttons ---------- */
+button {
+    display: inline-block;
+    appearance: none;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, .18);
+    transition: transform .06s ease, box-shadow .15s ease, background .15s ease, opacity .15s ease;
+    margin: 8px 8px 0 0;
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+}
+
+/* Make buttons full-width on small screens */
+@media (max-width: 520px) {
+    button {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* Secondary style (optional if you add class="secondary" later) */
+button.secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+
+button.secondary:hover {
+    background: color-mix(in oklab, var(--card-bg), #000 3%);
+}
+
+/* ---------- Utility ---------- */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+}
+
+/* Better tap targets on mobile */
+@media (max-width: 520px) {
+
+    input,
+    textarea {
+        padding: 14px 16px;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
