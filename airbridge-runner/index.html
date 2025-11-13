@@ -4,7 +4,8 @@
 <head>
     <title>Airbridge Runner</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/custom-alert.css" />
 </head>
 
 <body>
@@ -52,84 +53,18 @@
         <button id="btnGetWebToken" class="secondary">Get Web Token</button>
         <button id="btnGetJSONSchemaVersion" class="secondary">Get JSON Schema Version</button>
     </div>
-
-    <script type="text/javascript">
-        // Button references
-        const btnExecute = document.getElementById("btnExecute");
-        const btnGetWebToken = document.getElementById("btnGetWebToken");
-        const btnGetJSONSchemaVersion = document.getElementById("btnGetJSONSchemaVersion");
-
-        // Input references
-        const nativeNameInput = document.getElementById("nativeName");
-        const typeInput = document.getElementById("typeInput");
-        const parameterInput = document.getElementById("parameterInput");
-
-        // Helper: Get the AirbridgeNative object
-        function getNativeObject() {
-            const name = nativeNameInput.value.trim();
-            if (!name) {
-                alert("Please enter the object name.");
-                return null;
-            }
-
-            const obj = window[name];
-            if (!obj) {
-                alert(`Could not find object "${name}".`);
-                return null;
-            }
-            return obj;
-        }
-
-        // Execute button click
-        btnExecute.addEventListener("click", function () {
-            const type = typeInput.value.trim();
-            const parameterText = parameterInput.value.trim();
-
-            if (!type) {
-                alert("Please enter a type.");
-                return;
-            }
-
-            let parameter = {};
-            if (parameterText) {
-                try {
-                    parameter = JSON.parse(parameterText);
-                } catch (e) {
-                    alert("Invalid JSON in parameter: " + e.message);
-                    return;
-                }
-            }
-
-            const obj = getNativeObject();
-            if (!obj) return;
-
-            const payload = {
-                type: type,
-                parameter: parameter
-            };
-
-            console.log("Executing:", payload);
-            obj.execute(JSON.stringify(payload));
-            alert("Command sent:\n" + JSON.stringify(payload, null, 2));
-        });
-
-        // getWebToken()
-        btnGetWebToken.addEventListener("click", function () {
-            const obj = getNativeObject();
-            if (!obj) return;
-            const token = obj.getWebToken();
-            alert("getWebToken(): " + token);
-        });
-
-        // getJSONSchemaVersion()
-        btnGetJSONSchemaVersion.addEventListener("click", function () {
-            const obj = getNativeObject();
-            if (!obj) return;
-            const version = obj.getJSONSchemaVersion();
-            alert("getJSONSchemaVersion(): " + version);
-        });
-    </script>
-
+    <!-- Custom alert -->
+    <div id="customAlertOverlay" class="ca-overlay">
+        <div class="ca-dialog">
+            <div class="ca-row">
+                <div class="ca-icon">💬</div>
+                <div class="ca-message" id="customAlertMessage"></div>
+            </div>
+            <button class="ca-button" onclick="closeCustomAlert()">OK</button>
+        </div>
+    </div>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/custom-alert.js"></script>
 </body>
 
 </html>
