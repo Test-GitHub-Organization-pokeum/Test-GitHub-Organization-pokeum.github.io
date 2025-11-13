@@ -85,7 +85,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 12px 14px;
     border-radius: 10px;
@@ -109,7 +110,8 @@ textarea::placeholder {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     border-color: var(--primary);
     box-shadow: var(--ring);
     background: color-mix(in oklab, var(--card-bg), #000 1%);
@@ -185,7 +187,8 @@ hr {
 @media (max-width: 520px) {
 
     input,
-    textarea {
+    textarea,
+    select {
         padding: 14px 16px;
     }
 }
