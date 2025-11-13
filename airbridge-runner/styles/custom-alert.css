@@ -8,38 +8,66 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Dialog box */
 .ca-dialog {
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 18px;
-    padding: 20px 22px;
-    max-width: 320px;
-    width: calc(100% - 40px);
+    padding: 18px 20px 16px;
+    max-width: 340px;
+    width: 100%;
     box-shadow:
         0 22px 45px rgba(15, 23, 42, 0.35),
         0 0 0 1px rgba(148, 163, 184, 0.25);
     animation: ca-fade-in 0.18s ease-out;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
+    overflow: hidden;
 }
 
-/* Row container for icon + text */
+/* Scrollable content area */
+.ca-body {
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-right: -4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.7) transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.ca-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ca-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ca-body::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.7);
+    border-radius: 999px;
+}
+
+/* Row for icon + text */
 .ca-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
 }
 
-/* Icon (left) */
+/* Icon */
 .ca-icon {
     font-size: 20px;
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
-/* Message text (right) */
+/* Message text */
 .ca-message {
     font-size: 14px;
     color: #0f172a;
