@@ -1,93 +1,89 @@
-const input = document.getElementById("urlInput");
-const errorText = document.getElementById("errorText");
+const urlInput = document.getElementById("urlInput");
+const urlError = document.getElementById("urlError");
 const anchorContainer = document.getElementById("anchorContainer");
-const toast = document.getElementById("toast");
-const urlText = document.getElementById("urlText");
+const createAnchorButton = document.getElementById("createAnchorButton");
+const createLocationButton = document.getElementById("createLocationButton");
 
-function updateDisplaysOnInvalid(fullUrl, message) {
-    urlText.textContent = fullUrl || "uewebbrowser://";
-    anchorContainer.textContent = message || "Invalid URL. No link created.";
-}
+const messageInput = document.getElementById("messageInput");
+const sendMessageButton = document.getElementById("sendMessageButton");
+
+const toastMessage = document.getElementById("toastMessage");
+const toastDismiss = document.getElementById("toastDismiss");
 
 function buildUrl() {
-    const raw = input.value.trim();
-    const fullUrl = "uewebbrowser://" + raw;
-    urlText.textContent = fullUrl;
+    // reset anchor container
+    anchorContainer.textContent = "";
 
-    if (!raw) {
-        errorText.textContent = "The remaining path cannot be empty.";
-        errorText.style.display = "block";
-        anchorContainer.textContent = "No link created.";
-        return null;
-    }
-
-    if (/\s/.test(raw)) {
-        errorText.textContent = "Invalid URI format (no spaces allowed).";
-        errorText.style.display = "block";
-        updateDisplaysOnInvalid(fullUrl, "Invalid URI. No link created.");
-        return null;
-    }
-
+    const urlString = "uewebbrowser://" + urlInput.value;
     try {
-        new URL(fullUrl);
+        const url = new URL(urlString);
+
+        urlError.style.display = "none";
+        return url.href;
     } catch (e) {
-        errorText.textContent = "Invalid URI format.";
-        errorText.style.display = "block";
-        updateDisplaysOnInvalid(fullUrl, "Invalid URI. No link created.");
+        urlError.textContent = e.message;
+        urlError.style.display = "block";
+        urlInput.value = ""
         return null;
     }
-
-    errorText.style.display = "none";
-    return fullUrl;
-}
-
-function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add("show");
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 1600);
 }
 
 function createAnchor(url) {
     const a = document.createElement("a");
     a.href = url;
-    a.textContent = "Open uewebbrowser link";
+    a.textContent = "Click Link Address";
 
     anchorContainer.innerHTML = "";
     anchorContainer.appendChild(a);
-    urlText.textContent = url;
-    showToast("Anchor created.");
+    showToast(url);
+
+    // reset url input
+    urlInput.value = ""
 }
 
 function executeLocation(url) {
     try {
         window.location.href = url;
-        urlText.textContent = url;
-        anchorContainer.textContent = "window.location.href executed. (No anchor created)";
-        showToast("window.location.href executed.");
+        anchorContainer.textContent = "";
+        showToast(`window.location.href = ${url}`);
+
+        // reset url input
+        urlInput.value = ""
     } catch (e) {
-        updateDisplaysOnInvalid(url, "Error occurred. No link created.");
-        showToast("Error occurred during execution.");
+        showToast(e.message);
     }
 }
 
-document.getElementById("makeAnchorBtn").addEventListener("click", () => {
+createAnchorButton.addEventListener("click", () => {
     const url = buildUrl();
     if (!url) return;
     createAnchor(url);
 });
 
-document.getElementById("makeLocationBtn").addEventListener("click", () => {
+createLocationButton.addEventListener("click", () => {
     const url = buildUrl();
     if (!url) return;
     executeLocation(url);
 });
 
-input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        const url = buildUrl();
-        if (!url) return;
-        createAnchor(url);
+sendMessageButton.addEventListener("click", () => {
+    try {
+        const message = messageInput.value;
+        window.ue.uewebbrowser.sendmessage(message);
+        showToast(`window.ue.uewebbrowser.sendmessage(${message})`);
+    } catch (e) {
+        showToast(e.message);
+    } finally {
+        // reset message input
+        messageInput.value = "";
     }
+});
+
+function showToast(message) {
+    toastMessage.textContent = message;
+    toast.classList.add("show");
+}
+
+toastDismiss.addEventListener("click", () => {
+    toast.classList.remove("show");
 });

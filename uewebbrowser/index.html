@@ -9,46 +9,77 @@
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-header">
-            <div class="logo-dot">U</div>
-            <div>
-                <div class="title-main">uewebbrowser Link Executor</div>
-                <div class="title-sub">Create a clickable anchor or directly run window.location.href</div>
+    <div class="app-shell">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo-dot">U</div>
+                <div>
+                    <div class="title-main">uewebbrowser Link Executor</div>
+                    <div class="title-sub">Create a clickable anchor or directly run window.location.href</div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <section class="panel panel-input">
+                    <div class="field-group">
+                        <label for="urlInput">URL</label>
+                        <div class="input-row">
+                            <div class="prefix-pill">uewebbrowser://</div>
+                            <input type="text" id="urlInput" placeholder="Enter the path after the prefix" />
+                        </div>
+                        <div id="urlError" class="error"></div>
+                    </div>
+                </section>
+
+                <section class="panel panel-preview">
+                    <div class="generated-link-block">
+                        <div class="anchor-area-title">Generated Link</div>
+                        <div id="anchorContainer" class="anchor-preview">
+                        </div>
+                    </div>
+
+                    <div class="actions-vertical">
+                        <button type="button" class="primary" id="createAnchorButton">
+                            🔗 Create anchor
+                        </button>
+                        <button type="button" class="secondary" id="createLocationButton">
+                            🚀 Run window.location.href
+                        </button>
+                    </div>
+                </section>
             </div>
         </div>
-
-        <div>
-            <label for="urlInput">URL</label>
-            <div class="input-row">
-                <div class="prefix-pill">uewebbrowser://</div>
-                <input type="text" id="urlInput" placeholder="Enter the path after the prefix" />
+        <div class="card card-secondary">
+            <div class="card-header">
+                <div class="logo-dot">U</div>
+                <div>
+                    <div class="title-main">uewebbrowser Message Sender</div>
+                    <div class="title-sub">Send a message via window.ue.uewebbrowser.sendmessage()</div>
+                </div>
             </div>
-            <div class="hint">
-                Example: <strong>open?param=123</strong> — enter only what comes after the prefix (no spaces).
+
+            <div class="card-body single-column">
+                <section class="panel panel-input">
+                    <div class="field-group">
+                        <label for="messageInput">Message</label>
+                        <input type="text" id="messageInput" placeholder="Enter message to send" />
+                    </div>
+                </section>
+                <section class="panel panel-preview">
+                    <div class="actions-vertical">
+                        <button type="button" class="primary" id="sendMessageButton">
+                            💬 Send message
+                        </button>
+                    </div>
+                </section>
             </div>
-            <div id="errorText" class="error">The remaining path cannot be empty.</div>
-        </div>
-
-        <div class="button-row">
-            <button type="button" class="primary" id="makeAnchorBtn">
-                🔗 Create anchor
-            </button>
-            <button type="button" class="secondary" id="makeLocationBtn">
-                🚀 Run window.location.href
-            </button>
-        </div>
-
-        <div class="anchor-area">
-            <div class="anchor-area-title">Generated URL</div>
-            <div id="urlText" class="url-text">No URL generated yet.</div>
-
-            <div class="anchor-area-title" style="margin-top: 6px;">Generated Link</div>
-            <div id="anchorContainer">No link generated yet.</div>
         </div>
     </div>
 
-    <div id="toast" class="toast">Executed.</div>
+    <div id="toast" class="toast">
+        <span id="toastMessage"></span>
+        <button id="toastDismiss">✕</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
